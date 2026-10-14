@@ -1,0 +1,32 @@
+[package]
+name = "toast"
+version = "0.1.0"
+edition = "2021"
+description = "Notifications drawn in the corner, kept, and sent from anywhere"
+license = "MIT"
+
+[dependencies]
+fontdue = "0.9"
+libc = "0.2"
+png = "0.18"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+softbuffer = { version = "0.4", default-features = false, features = ["x11", "x11-dlopen", "wayland", "wayland-dlopen"] }
+toml = { version = "1", default-features = false, features = ["parse", "serde", "std", "preserve_order"] }
+winit = { version = "0.30", default-features = false, features = ["rwh_06", "x11", "wayland", "wayland-dlopen"] }
+x11rb = { version = "0.14", features = ["randr", "shape"] }
+
+# softbuffer with see-through pixels on Wayland: vendor/softbuffer/TOAST.md.
+[patch.crates-io]
+softbuffer = { path = "vendor/softbuffer" }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = true
+
+# Drawing in an unoptimised build is unusably slow.
+[profile.dev.package."*"]
+opt-level = 3

@@ -1,0 +1,13 @@
+The icons in solar.ttf are from Solar, by 480 Design, in its "linear"
+style, as published by Iconify (@iconify-json/solar).
+
+They are licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+
+Changes made here: the line is drawn 2.25 wide where Solar draws it at
+1.5, the lines are turned into filled outlines, and the icons jog uses
+are gathered into a font (tools/solar_font.py).
+
+The icons in solar-duotone.ttf are from Solar's "bold duotone" style,
+under the same license. Changes made here: each icon's two tones are
+made two glyphs of a font (tools/project_icons.py).

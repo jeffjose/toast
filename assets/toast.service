@@ -1,0 +1,11 @@
+[Unit]
+Description=toast, the desktop's notifications
+# Started at login, or by the first notification sent, or by `toast`.
+PartOf=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=io.github.jeffjose.Toast
+ExecStart=@EXE@ run
+Restart=on-failure
+RestartSec=2

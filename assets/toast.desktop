@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=toast
+GenericName=Notification history
+Comment=Search and copy the notifications toast has kept
+Icon=toast
+Exec=toast history
+Terminal=false
+Categories=Utility;
+Keywords=toast;notifications;history;
+StartupWMClass=toast
