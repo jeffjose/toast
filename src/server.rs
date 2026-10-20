@@ -158,7 +158,7 @@ fn answer(bus: &mut Bus, message: &Message, shared: &Shared, proxy: &EventLoopPr
         }
         (NAME, "Status") => {
             let status = serde_json::json!({
-                "version": env!("CARGO_PKG_VERSION"),
+                "version": crate::version(),
                 "serving": shared.serving.load(Ordering::Relaxed),
                 "owner": if shared.serving.load(Ordering::Relaxed) { None } else { bus.owner(FDO) },
                 "quiet": shared.quiet.load(Ordering::Relaxed),

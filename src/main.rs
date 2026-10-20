@@ -38,6 +38,17 @@ toast: notifications drawn in the corner, kept, and sent from anywhere.
                   draw the demo to a PNG, without a desktop
 ";
 
+/// The version and the commit it was built from: `0.1.0-abc1234`, with
+/// `-dirty` if the tree had changes not committed.
+pub fn version() -> String {
+    // Unset where git could not be asked, or vergen's stand-in.
+    let Some(sha) = option_env!("VERGEN_GIT_SHA").filter(|sha| !sha.is_empty() && !sha.contains("VERGEN")) else {
+        return env!("CARGO_PKG_VERSION").to_string();
+    };
+    let dirty = if option_env!("VERGEN_GIT_DIRTY") == Some("true") { "-dirty" } else { "" };
+    format!("{}-{sha}{dirty}", env!("CARGO_PKG_VERSION"))
+}
+
 fn main() {
     let mut arguments = env::args().skip(1);
     let command = arguments.next().unwrap_or_default();
@@ -65,7 +76,7 @@ fn main() {
             Ok(())
         }
         "-V" | "--version" => {
-            println!("toast {}", env!("CARGO_PKG_VERSION"));
+            println!("toast {}", version());
             Ok(())
         }
         other => Err(format!("no command {other} (toast --help)")),

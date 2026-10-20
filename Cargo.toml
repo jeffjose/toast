@@ -16,6 +16,9 @@ toml = { version = "1", default-features = false, features = ["parse", "serde", 
 winit = { version = "0.30", default-features = false, features = ["rwh_06", "x11", "wayland", "wayland-dlopen"] }
 x11rb = { version = "0.14", features = ["randr", "shape"] }
 
+[build-dependencies]
+vergen-gitcl = "10.0.3"
+
 # softbuffer with see-through pixels on Wayland: vendor/softbuffer/TOAST.md.
 [patch.crates-io]
 softbuffer = { path = "vendor/softbuffer" }
